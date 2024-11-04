@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Presentation.Views.ContentViews.HabitCardView">
+    <Frame Padding="10" Margin="5" BackgroundColor="LightGray" CornerRadius="8">
+        <StackLayout>
+            <!-- Название привычки и кнопка перехода -->
+            <Grid ColumnDefinitions="*, Auto">
+                <Label Text="{Binding Name}" FontSize="18" VerticalOptions="Center" />
+                <Button Text="..." Command="{Binding OpenDashboardCommand}" />
+            </Grid>
+
+            <!-- Календарь на последние 6 дней -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="5">
+                <!-- Пример разметки для последних дней и кнопок -->
+                <Grid ColumnDefinitions="*,*,*,*,*,*">
+                    <!-- Каждый день с кнопкой -->
+                    <StackLayout>
+                        <Label Text="{Binding Day}" FontSize="14" HorizontalOptions="Center" />
+                        <Button Text="❌">
+                            <Button.Triggers>
+                                <DataTrigger TargetType="Button" Binding="{Binding Completed}" Value="True">
+                                    <Setter Property="Text" Value="✔️" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Button" Binding="{Binding Completed}" Value="False">
+                                    <Setter Property="Text" Value="❌" />
+                                </DataTrigger>
+                            </Button.Triggers>
+                        </Button>
+                    </StackLayout>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </Frame>
+</ContentView>
