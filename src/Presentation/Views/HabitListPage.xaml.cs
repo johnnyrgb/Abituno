@@ -1,9 +1,13 @@
+using Presentation.ViewModels;
+
 namespace Presentation.Views;
 
 public partial class HabitListPage : ContentPage
 {
-	public HabitListPage()
-	{
-		InitializeComponent();
-	}
+    public HabitListPage(HabitListViewModel viewModel)
+    {
+        InitializeComponent();
+        BindingContext = viewModel;
+        viewModel.LoadHabitsCommand.Execute(null);
+    }
 }

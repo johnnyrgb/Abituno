@@ -2,11 +2,6 @@
 using BLL.Interfaces;
 using DAL.Entities;
 using DAL.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Services
 {
@@ -32,6 +27,23 @@ namespace BLL.Services
                 .Where(hr => hr.HabitId == habitId)
                 .Select(MapToDTO);
         }
+
+        public async Task<IEnumerable<HabitRecordDTO>> GetLastHabitRecordsInDateRangeAsync(int habitId, DateOnly startDate, DateOnly endDate)
+        {
+            var habitRecords = await _repository.HabitRecord.GetAllAsync();
+            return (habitRecords ?? Enumerable.Empty<HabitRecord>())
+                .Where(hr => hr.HabitId == habitId && hr.RecordDate >= startDate && hr.RecordDate <= endDate)
+                .Select(MapToDTO);
+        }
+
+        public async Task<IEnumerable<HabitRecordDTO>> GetLastHabitRecordsInRangeAsync(int habitId, int count)
+        {
+            var habitRecords = await _repository.HabitRecord.GetAllAsync();
+            return (habitRecords ?? Enumerable.Empty<HabitRecord>())
+                .Where(hr => hr.HabitId == habitId).TakeLast(count)
+                .Select(MapToDTO);
+        }
+
 
         public async Task CreateHabitRecordAsync(HabitRecordDTO habitRecordDto)
         {

@@ -34,22 +34,23 @@ namespace DAL
                 var habitRecords = new List<HabitRecord>();
 
                 var startDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-15);
-                for (int i = 0; i < 15; i++)
+                for (int i = 0; i < 15; i += 2)
                 {
                     habitRecords.Add(new HabitRecord { HabitId = 1, RecordDate = startDate.AddDays(i) });
                 }
 
                 startDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-11);
-                for (int i = 0; i < 15; i++)
+                for (int i = 0; i < 15; i += 3)
                 {
                     habitRecords.Add(new HabitRecord { HabitId = 2, RecordDate = startDate.AddDays(i) });
                 }
 
                 startDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-7);
-                for (int i = 0; i < 15; i++)
+                for (int i = 0; i < 15; i += 2)
                 {
                     habitRecords.Add(new HabitRecord { HabitId = 3, RecordDate = startDate.AddDays(i) });
                 }
+                await _context.HabitRecords.AddRangeAsync(habitRecords);
 
                 await _context.SaveChangesAsync();
             }

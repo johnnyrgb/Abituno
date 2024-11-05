@@ -3,6 +3,11 @@ using BLL.Interfaces;
 using BLL.Services;
 using DAL;
 using Microsoft.EntityFrameworkCore;
+using Presentation.Views;
+using Presentation.ViewModels;
+using DAL.Interfaces;
+using DAL.Repository;
+
 
 namespace Presentation
 {
@@ -25,10 +30,13 @@ namespace Presentation
                 optionsAction.UseSqlite(String.Concat("Data Source = ", Path.Combine(FileSystem.AppDataDirectory, "HabitDB.db"))));
             builder.Services.AddTransient<DatabaseSeed>();
 
+
+            builder.Services.AddTransient<HabitListViewModel>();
+            builder.Services.AddTransient<HabitListPage>();
             // Регистрация сервисов
             builder.Services.AddTransient<IHabitService, HabitService>();
             builder.Services.AddTransient<IHabitRecordService, HabitRecordService>();
-
+            builder.Services.AddSingleton<IDbRepository, DbRepository>();
             // Создание приложения
             var app = builder.Build();
 
