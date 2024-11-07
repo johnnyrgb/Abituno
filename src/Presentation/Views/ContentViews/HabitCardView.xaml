@@ -1,9 +1,7 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Presentation.Views.Converters"
-             x:Class="Presentation.Views.ContentViews.HabitCardView"
-             
-             >
+             x:Class="Presentation.Views.ContentViews.HabitCardView">
     <ContentView.Resources>
         <ResourceDictionary>
             <local:BoolToSymbolConverter x:Key="BoolToSymbolConverter" />
@@ -11,9 +9,9 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <Frame BackgroundColor="{StaticResource Primary}"
-Padding="20"
-Margin="10,5,10,5"
-                 CornerRadius="30">
+           Padding="20"
+           Margin="10,5,10,5"
+           CornerRadius="30">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -24,48 +22,51 @@ Margin="10,5,10,5"
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <!-- Название привычки -->
-            <Label Text="{Binding HabitName}" 
-           FontSize="Medium" 
-           TextColor="White"
-           VerticalOptions="Start"
-           HorizontalOptions="Start" 
-           Grid.Row="0" 
-           Grid.Column="0"/>
+            <Label Text="{Binding HabitName}"
+                   FontSize="Medium"
+                   TextColor="White"
+                   VerticalOptions="Start"
+                   HorizontalOptions="Start"
+                   Grid.Row="0"
+                   Grid.Column="0" />
 
             <!-- Кнопка "..." для перехода на HabitDashboardPage -->
-            <Button Text="⋮" 
-            FontSize="Medium" 
-            TextColor="White" 
-            BackgroundColor="Transparent"
-            Command="{Binding NavigateToHabitDashboardCommand}"
-            HorizontalOptions="End" 
-            VerticalOptions="Start" 
-            Grid.Row="0" 
-            Grid.Column="1"/>
+            <Button Text="⋮"
+                    FontSize="Medium"
+                    TextColor="White"
+                    BackgroundColor="Transparent"
+                    Command="{Binding NavigateToHabitDashboardCommand}"
+                    HorizontalOptions="End"
+                    VerticalOptions="Start"
+                    Grid.Row="0"
+                    Grid.Column="1" />
 
             <!-- Список дней с отметками выполнения -->
-            <StackLayout Orientation="Horizontal" 
-                 Grid.Row="1" 
-                 Grid.Column="0" 
-                 Grid.ColumnSpan="2" 
-                 Padding="0,0,0,0"
-                 HorizontalOptions="CenterAndExpand"
-                 BindableLayout.ItemsSource="{Binding Records}">
+            <StackLayout Orientation="Horizontal"
+                         Grid.Row="1"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="2"
+                         Padding="0,0,0,0"
+                         HorizontalOptions="CenterAndExpand"
+                         BindableLayout.ItemsSource="{Binding Records}">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
 
                         <!-- Кнопка для отметки выполнения -->
-                        <StackLayout Orientation="Vertical" >
+                        <StackLayout Orientation="Vertical"
+                                     HorizontalOptions="FillAndExpand">
                             <Label Text="{Binding RecordDate, StringFormat='{0:dd}'}"
-   HorizontalOptions="Center"
-   TextColor="{StaticResource White}"/>
+                                   HorizontalOptions="Center"
+                                   TextColor="{StaticResource White}" />
                             <Button FontSize="Small"
-
-    CornerRadius="25"
-BackgroundColor="{Binding IsCompleted, Converter={StaticResource HabitCardButtonStyleConverter}, ConverterParameter='BackgroundColor'}"
-    TextColor="{Binding IsCompleted, Converter={StaticResource HabitCardButtonStyleConverter}, ConverterParameter='TextColor'}">
+                                    x:Name="RecordButton"
+                                    HeightRequest="{Binding Source={x:Reference RecordButton}, Path=Width}"
+                                    BackgroundColor="{Binding IsCompleted, Converter={StaticResource HabitCardButtonStyleConverter}, ConverterParameter='BackgroundColor'}"
+                                    TextColor="{Binding IsCompleted, Converter={StaticResource HabitCardButtonStyleConverter}, ConverterParameter='TextColor'}">
                                 <Button.Text>
-                                    <Binding Path="IsCompleted" Converter="{StaticResource BoolToSymbolConverter}" ConverterParameter='Text' />
+                                    <Binding Path="IsCompleted"
+                                             Converter="{StaticResource BoolToSymbolConverter}"
+                                             ConverterParameter='Text' />
                                 </Button.Text>
                             </Button>
                         </StackLayout>
@@ -76,5 +77,4 @@ BackgroundColor="{Binding IsCompleted, Converter={StaticResource HabitCardButton
             </StackLayout>
         </Grid>
     </Frame>
-    
 </ContentView>
