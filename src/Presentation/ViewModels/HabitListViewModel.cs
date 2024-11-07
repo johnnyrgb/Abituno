@@ -1,6 +1,8 @@
-﻿using BLL.Interfaces;
+﻿using BLL.DTOs;
+using BLL.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Presentation.ViewModels;
 using System.Collections.ObjectModel;
 
 public class HabitListViewModel : ObservableObject
@@ -40,38 +42,21 @@ public class HabitListViewModel : ObservableObject
             {
                 // Проверяем, есть ли запись на эту дату
                 var record = habitRecords.FirstOrDefault(r => r.RecordDate == date);
-                if (record != null)
+                var habitRecordViewModel = new HabitRecordViewModel(_habitRecordService)
                 {
-                    last7DaysRecords.Add(new HabitRecordViewModel { RecordDate = date, IsCompleted = true });
-                }
-                else
-                {
-                    last7DaysRecords.Add(new HabitRecordViewModel { RecordDate = date, IsCompleted = false });
-                }
+                    Id = record?.Id ?? -1,  // Устанавливаем Id записи, если она существует
+                    HabitId = habit.Id,
+                    RecordDate = date,
+                    IsCompleted = record != null
+                };
+                last7DaysRecords.Add(habitRecordViewModel);
             }
 
             // Создаем ViewModel для HabitCard с необходимыми данными
-            var habitCardViewModel = new HabitCardViewModel
-            {
-                HabitId = habit.Id,
-                HabitName = habit.Name,
-                Records = last7DaysRecords
-            };
+            var habitCardViewModel = new HabitCardViewModel(habit.Id, habit.Name, last7DaysRecords);
 
             Habits.Add(habitCardViewModel);
         }
     }
 }
 
-public class HabitCardViewModel : ObservableObject
-{
-    public int HabitId { get; set; }
-    public string HabitName { get; set; }
-    public ObservableCollection<HabitRecordViewModel> Records { get; set; } = new ObservableCollection<HabitRecordViewModel>();
-}
-
-public class HabitRecordViewModel : ObservableObject
-{
-    public DateOnly RecordDate { get; set; }
-    public bool IsCompleted { get; set; } // true, если привычка была выполнена в этот день
-}

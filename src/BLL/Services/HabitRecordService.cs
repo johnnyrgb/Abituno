@@ -45,10 +45,11 @@ namespace BLL.Services
         }
 
 
-        public async Task CreateHabitRecordAsync(HabitRecordDTO habitRecordDto)
+        public async Task<int> CreateHabitRecordAsync(HabitRecordDTO habitRecordDto)
         {
             var habitRecord = MapToEntity(habitRecordDto);
             await _repository.HabitRecord.CreateAsync(habitRecord);
+            return habitRecord.Id;
         }
 
         public async Task UpdateHabitRecordAsync(HabitRecordDTO habitRecordDto)

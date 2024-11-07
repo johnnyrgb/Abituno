@@ -1,4 +1,6 @@
-﻿namespace Presentation
+﻿using Presentation.Views;
+
+namespace Presentation
 {
     public partial class AppShell : Shell
     {

@@ -8,7 +8,6 @@ using Presentation.ViewModels;
 using DAL.Interfaces;
 using DAL.Repository;
 
-
 namespace Presentation
 {
     public static class MauiProgram
@@ -33,6 +32,8 @@ namespace Presentation
 
             builder.Services.AddTransient<HabitListViewModel>();
             builder.Services.AddTransient<HabitListPage>();
+            builder.Services.AddTransient<HabitDashboardPage>();
+            builder.Services.AddTransient<HabitDashboardViewModel>();
             // Регистрация сервисов
             builder.Services.AddTransient<IHabitService, HabitService>();
             builder.Services.AddTransient<IHabitRecordService, HabitRecordService>();

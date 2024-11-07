@@ -12,4 +12,8 @@
         ContentTemplate="{DataTemplate local:HabitListPage}"
         Route="HabitListPage" />
 
+    <ShellContent Route="HabitDashboardPage"
+                  Title="Дэшборд"
+                  ContentTemplate="{DataTemplate local:HabitDashboardPage}" />
+
 </Shell>

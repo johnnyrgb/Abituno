@@ -9,29 +9,31 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <Frame BackgroundColor="{StaticResource Primary}"
-           Padding="20"
+           Padding="20,5,20,20"
            Margin="10,5,10,5"
-           CornerRadius="30">
+           CornerRadius="20">
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*"  />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <!-- Название привычки -->
             <Label Text="{Binding HabitName}"
                    FontSize="Medium"
                    TextColor="White"
-                   VerticalOptions="Start"
+                   VerticalOptions="CenterAndExpand"
                    HorizontalOptions="Start"
                    Grid.Row="0"
-                   Grid.Column="0" />
+                   Grid.Column="0" 
+                   />
 
             <!-- Кнопка "..." для перехода на HabitDashboardPage -->
             <Button Text="⋮"
+                    x:Name="DashboardButton"
                     FontSize="Medium"
                     TextColor="White"
                     BackgroundColor="Transparent"
@@ -39,7 +41,9 @@
                     HorizontalOptions="End"
                     VerticalOptions="Start"
                     Grid.Row="0"
-                    Grid.Column="1" />
+                    Grid.Column="1"
+                    CornerRadius="{Binding Source={x:Reference DashboardButton}, Path=Width}"
+                    />
 
             <!-- Список дней с отметками выполнения -->
             <StackLayout Orientation="Horizontal"
@@ -48,21 +52,26 @@
                          Grid.ColumnSpan="2"
                          Padding="0,0,0,0"
                          HorizontalOptions="CenterAndExpand"
-                         BindableLayout.ItemsSource="{Binding Records}">
+                         BindableLayout.ItemsSource="{Binding Records}"
+                         Margin="0,5,0,0">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
 
                         <!-- Кнопка для отметки выполнения -->
                         <StackLayout Orientation="Vertical"
-                                     HorizontalOptions="FillAndExpand">
+                                     HorizontalOptions="FillAndExpand"
+                                     Margin="2,0,2,0">
                             <Label Text="{Binding RecordDate, StringFormat='{0:dd}'}"
                                    HorizontalOptions="Center"
-                                   TextColor="{StaticResource White}" />
+                                   TextColor="{StaticResource White}"
+                                   Margin="0,0,0,5"/>
                             <Button FontSize="Small"
                                     x:Name="RecordButton"
                                     HeightRequest="{Binding Source={x:Reference RecordButton}, Path=Width}"
                                     BackgroundColor="{Binding IsCompleted, Converter={StaticResource HabitCardButtonStyleConverter}, ConverterParameter='BackgroundColor'}"
-                                    TextColor="{Binding IsCompleted, Converter={StaticResource HabitCardButtonStyleConverter}, ConverterParameter='TextColor'}">
+                                    TextColor="{Binding IsCompleted, Converter={StaticResource HabitCardButtonStyleConverter}, ConverterParameter='TextColor'}"
+                                    CornerRadius="{Binding Source={x:Reference RecordButton}, Path=Width}"
+                                    Command="{Binding SetCompletionCommand}">
                                 <Button.Text>
                                     <Binding Path="IsCompleted"
                                              Converter="{StaticResource BoolToSymbolConverter}"

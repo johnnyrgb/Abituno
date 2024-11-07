@@ -11,5 +11,7 @@ namespace BLL.DTOs
         public int Id { get; set; }
         public int HabitId { get; set; }
         public DateOnly RecordDate { get; set; }
+
+        public HabitRecordDTO() { }
     }
 }
