@@ -3,6 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:contentViews="clr-namespace:Presentation.Views.ContentViews"
              x:Class="Presentation.Views.HabitListPage">
+    <Shell.TitleView>
+
+        <Label Text="Мои привычки"
+               FontSize="Title"
+               HorizontalOptions="Start"
+               VerticalOptions="Center"
+               TextColor="Black" />
+    </Shell.TitleView>
+
     <ContentPage.Content>
         <CollectionView ItemsSource="{Binding Habits}">
             <CollectionView.ItemTemplate>

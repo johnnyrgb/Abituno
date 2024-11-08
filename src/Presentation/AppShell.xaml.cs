@@ -7,6 +7,8 @@ namespace Presentation
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute("dashboard", typeof(HabitDashboardPage));
+            Routing.RegisterRoute("habitlist", typeof(HabitListPage));
         }
     }
 }

@@ -28,7 +28,7 @@ namespace Presentation.ViewModels
                  { "HabitId", HabitId }
             };
 
-            await Shell.Current.GoToAsync($"///{nameof(HabitDashboardPage)}", navigationParameter);
+            await Shell.Current.GoToAsync($"dashboard", navigationParameter);
 
         }
     }
