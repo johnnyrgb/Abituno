@@ -61,10 +61,17 @@
                         <StackLayout Orientation="Vertical"
                                      HorizontalOptions="FillAndExpand"
                                      Margin="2,0,2,0">
-                            <Label Text="{Binding RecordDate, StringFormat='{0:dd}'}"
-                                   HorizontalOptions="Center"
-                                   TextColor="{StaticResource White}"
-                                   Margin="0,0,0,5"/>
+                            <StackLayout Orientation="Vertical">
+                                <Label Text="{Binding RecordDate, StringFormat='{0:ddd}'}"
+                                       HorizontalOptions="Center"
+                                       TextColor="{StaticResource White}"
+                                       Margin="0,0,0,0" />
+                                <Label Text="{Binding RecordDate, StringFormat='{0:dd}'}"
+                                       HorizontalOptions="Center"
+                                       TextColor="{StaticResource White}"
+                                       Margin="0,0,0,5" />
+                            </StackLayout>
+                            
                             <Button FontSize="Small"
                                     x:Name="RecordButton"
                                     HeightRequest="{Binding Source={x:Reference RecordButton}, Path=Width}"

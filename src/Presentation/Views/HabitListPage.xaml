@@ -1,18 +1,19 @@
-<!-- HabitListPage.xaml -->
+ï»¿<!-- HabitListPage.xaml -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:contentViews="clr-namespace:Presentation.Views.ContentViews"
              x:Class="Presentation.Views.HabitListPage">
     <Shell.TitleView>
 
-        <Label Text="Ìîè ïðèâû÷êè"
+        <Label Text="ÐœÐ¾Ð¸ Ð¿Ñ€Ð¸Ð²Ñ‹Ñ‡ÐºÐ¸"
                FontSize="Title"
                HorizontalOptions="Start"
                VerticalOptions="Center"
-               TextColor="Black" />
+               TextColor="{StaticResource Black}" />
     </Shell.TitleView>
 
     <ContentPage.Content>
+        
         <CollectionView ItemsSource="{Binding Habits}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>

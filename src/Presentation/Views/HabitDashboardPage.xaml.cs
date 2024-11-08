@@ -7,5 +7,6 @@ public partial class HabitDashboardPage : ContentPage
     {
         InitializeComponent();
         BindingContext = viewModel;
+        
     }
 }

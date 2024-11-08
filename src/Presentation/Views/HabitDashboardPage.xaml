@@ -2,23 +2,117 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Presentation.Views.HabitDashboardPage"
-             Title="HabitDashboardPage">
+             >
     <Shell.TitleView>
- 
-            <Label Text="Дэшборд"
-                   FontSize="Title"
-                   HorizontalOptions="Start"
-                   VerticalOptions="Center"
-                   TextColor="Black" />
-    </Shell.TitleView>
 
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Label Text="{Binding HabitId}"
+        <Label Text="{Binding HabitName}"
+               FontSize="Title"
+               HorizontalOptions="Start"
                VerticalOptions="Center"
-               HorizontalOptions="Center" />
-    </VerticalStackLayout>
+               TextColor="Black" />
+    </Shell.TitleView>
+    <Grid Padding="20"
+          RowSpacing="20"
+          ColumnSpacing="10">
+
+        <!-- Define rows and columns for the Grid -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Placeholder for Circle -->
+            <RowDefinition Height="Auto" />
+            <!-- Streak and Start Date Rows -->
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <!-- Left Column -->
+            <ColumnDefinition Width="*" />
+            <!-- Right Column -->
+        </Grid.ColumnDefinitions>
+
+        <!-- Placeholder for Percentage Circle (First Row) -->
+        <Frame Grid.Row="0"
+               Grid.ColumnSpan="2"
+               HeightRequest="300"
+               WidthRequest="300"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               BackgroundColor="{StaticResource Secondary}"
+               CornerRadius="{Binding Path=HeightRequest, Source={RelativeSource Self}}">
+            <!-- Add a circular indicator here if needed -->
+        </Frame>
+
+        <!-- Current Streak (Left Column, Second Row) -->
+        <StackLayout Orientation="Vertical"
+                     Grid.Row="1"
+                     Grid.Column="0">
+            <Label 
+                   Text="{Binding CurrentStreak}"
+                   FontSize="40"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Primary}"
+                   HorizontalOptions="Center" />
+            <Label 
+                   Text="подряд"
+                   FontSize="25"
+                   TextColor="{StaticResource Gray500}"
+                   HorizontalOptions="Center" />
+        </StackLayout>
+        
+
+        <!-- Max Streak (Right Column, Second Row) -->
+        <StackLayout Orientation="Vertical"
+                     Grid.Row="1"
+                     Grid.Column="1">
+            <Label 
+                   
+                   Text="{Binding MaxStreak}"
+                   FontSize="40"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Primary}"
+                   HorizontalOptions="Center" />
+            <Label 
+                   Text="максимум"
+                   FontSize="25"
+                   TextColor="{StaticResource Gray500}"
+                   HorizontalOptions="Center" />
+        </StackLayout>
+        
+
+        <!-- Start Date (Left Column, Third Row) -->
+        <StackLayout Orientation="Vertical"
+                     Grid.Row="2"
+                     Grid.Column="0">
+            <Label 
+                   Text="{Binding StartDate, StringFormat='{0:dd MMM}'}"
+                   FontSize="40"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Primary}"
+                   HorizontalOptions="Center" />
+            <Label 
+                   Text="начато"
+                   FontSize="25"
+                   TextColor="{StaticResource Gray500}"
+                   HorizontalOptions="Center" />
+        </StackLayout>
+        
+
+        <!-- Record Count (Right Column, Third Row) -->
+        <StackLayout Orientation="Vertical"
+                     Grid.Row="2"
+                     Grid.Column="1">
+            <Label
+                   Text="{Binding RecordCount}"
+                   FontSize="40"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Primary}"
+                   HorizontalOptions="Center" />
+            <Label
+                   Text="всего"
+                   FontSize="25"
+                   TextColor="{StaticResource Gray500}"
+                   HorizontalOptions="Center" />
+        </StackLayout>
+    </Grid>
 </ContentPage>
