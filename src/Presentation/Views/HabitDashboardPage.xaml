@@ -85,7 +85,7 @@
                      Grid.Row="2"
                      Grid.Column="0">
             <Label 
-                   Text="{Binding StartDate, StringFormat='{0:dd MMM}'}"
+                   Text="{Binding StartDate}"
                    FontSize="40"
                    FontAttributes="Bold"
                    TextColor="{StaticResource Primary}"

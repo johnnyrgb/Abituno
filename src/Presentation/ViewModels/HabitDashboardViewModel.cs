@@ -26,7 +26,14 @@ namespace Presentation.ViewModels
 
         public int CurrentStreak { get; set; }
         public int MaxStreak {  get; set; }
-        public DateOnly StartDate { get; set; }
+        private DateOnly _startDate;
+        public string StartDate {
+            get 
+            {
+                var result = _startDate.ToString("dd ") + _startDate.ToString("MMM").Substring(0, 3);
+                return result;
+            }
+        }
         public int RecordCount { get; set; }
         public HabitDashboardViewModel(IHabitRecordService habitRecordService, IHabitService habitService)
         {
@@ -45,7 +52,7 @@ namespace Presentation.ViewModels
 
            CurrentStreak = await _habitRecordService.GetCurrentStreak(HabitId);
            MaxStreak = await _habitRecordService.GetMaxStreak(HabitId);
-            StartDate = habit.StartDate;
+            _startDate = habit.StartDate;
            RecordCount = await _habitRecordService.GetCount(HabitId);
 
             //Обновляем привязанные свойства
@@ -54,6 +61,7 @@ namespace Presentation.ViewModels
            OnPropertyChanged(nameof(MaxStreak));
             OnPropertyChanged(nameof(StartDate));
            OnPropertyChanged(nameof(RecordCount));
+            OnPropertyChanged(nameof(_startDate));
 
         }
 
