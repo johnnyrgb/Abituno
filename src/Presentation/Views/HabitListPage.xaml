@@ -12,14 +12,34 @@
                TextColor="{StaticResource Black}" />
     </Shell.TitleView>
 
-    <ContentPage.Content>
-        
+    <Grid>
         <CollectionView ItemsSource="{Binding Habits}">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <contentViews:HabitCardView BindingContext="{Binding .}"/>
+                    <contentViews:HabitCardView BindingContext="{Binding .}" />
                 </DataTemplate>
+
             </CollectionView.ItemTemplate>
+
         </CollectionView>
-    </ContentPage.Content>
+        <Button x:Name="AddNewHabitButton"
+                ZIndex="2"
+                MinimumWidthRequest="50"
+                MinimumHeightRequest="{Binding Path=MinimumWidthRequest, Source={RelativeSource Self}}"
+                WidthRequest="60"
+                HeightRequest="{Binding Path=WidthRequest, Source={RelativeSource Self}}"
+                CornerRadius="{Binding Path=WidthRequest, Source={RelativeSource Self}}"
+                Margin="20"
+                BackgroundColor="{StaticResource Secondary}"
+                TextColor="{StaticResource Primary}"
+                VerticalOptions="End"
+                HorizontalOptions="EndAndExpand"
+                Text="+"
+                FontAttributes="Bold"
+                FontSize="40"
+                FontAutoScalingEnabled="True"
+                Padding="0,0,0,0" />
+
+
+    </Grid>
 </ContentPage>

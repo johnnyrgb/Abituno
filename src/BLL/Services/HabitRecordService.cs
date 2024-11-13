@@ -56,10 +56,10 @@ namespace BLL.Services
             DateOnly today = DateOnly.FromDateTime(DateTime.Today);
 
             // Проверка на выполнение привычки сегодня
-                if (habitRecords.Any(record => record.RecordDate == today))
-                {
-                    currentStreak++; // Увеличиваем счетчик за сегодняшнее выполнение
-                }
+            if (habitRecords.Any(record => record.RecordDate == today))
+            {
+                currentStreak++; // Увеличиваем счетчик за сегодняшнее выполнение
+            }
 
             // Начинаем с вчерашнего дня для проверки последовательности
             DateOnly? previousDate = today.AddDays(-1);

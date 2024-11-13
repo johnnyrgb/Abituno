@@ -8,7 +8,7 @@ namespace DAL
         public DbSet<Habit> Habits { get; set; }
         public DbSet<HabitRecord> HabitRecords { get; set; }
 
-        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) 
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
             Database.EnsureCreated();
         }

@@ -1,12 +1,12 @@
-﻿using Microsoft.Extensions.Logging;
-using BLL.Interfaces;
+﻿using BLL.Interfaces;
 using BLL.Services;
 using DAL;
-using Microsoft.EntityFrameworkCore;
-using Presentation.Views;
-using Presentation.ViewModels;
 using DAL.Interfaces;
 using DAL.Repository;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using Presentation.ViewModels;
+using Presentation.Views;
 
 namespace Presentation
 {

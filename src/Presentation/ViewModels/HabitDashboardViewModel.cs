@@ -1,13 +1,6 @@
 ﻿using BLL.Interfaces;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using DAL.Entities;
-using Presentation.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Presentation.ViewModels
 {
@@ -25,10 +18,11 @@ namespace Presentation.ViewModels
         public string HabitName { get; set; }
 
         public int CurrentStreak { get; set; }
-        public int MaxStreak {  get; set; }
+        public int MaxStreak { get; set; }
         private DateOnly _startDate;
-        public string StartDate {
-            get 
+        public string StartDate
+        {
+            get
             {
                 var result = _startDate.ToString("dd ") + _startDate.ToString("MMM").Substring(0, 3);
                 return result;
@@ -50,17 +44,17 @@ namespace Presentation.ViewModels
 
             HabitName = habit.Name;
 
-           CurrentStreak = await _habitRecordService.GetCurrentStreak(HabitId);
-           MaxStreak = await _habitRecordService.GetMaxStreak(HabitId);
+            CurrentStreak = await _habitRecordService.GetCurrentStreak(HabitId);
+            MaxStreak = await _habitRecordService.GetMaxStreak(HabitId);
             _startDate = habit.StartDate;
-           RecordCount = await _habitRecordService.GetCount(HabitId);
+            RecordCount = await _habitRecordService.GetCount(HabitId);
 
             //Обновляем привязанные свойства
             OnPropertyChanged(nameof(HabitName));
-           OnPropertyChanged(nameof(CurrentStreak));
-           OnPropertyChanged(nameof(MaxStreak));
+            OnPropertyChanged(nameof(CurrentStreak));
+            OnPropertyChanged(nameof(MaxStreak));
             OnPropertyChanged(nameof(StartDate));
-           OnPropertyChanged(nameof(RecordCount));
+            OnPropertyChanged(nameof(RecordCount));
             OnPropertyChanged(nameof(_startDate));
 
         }

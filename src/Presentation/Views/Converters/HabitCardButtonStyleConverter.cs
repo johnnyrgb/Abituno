@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using Microsoft.Maui.Controls;
+﻿using System.Globalization;
 
 namespace Presentation.Views.Converters
 {
@@ -17,7 +15,7 @@ namespace Presentation.Views.Converters
                 if (parameter as string == "TextColor")
                 {
                     return isCompleted ? (Color)Application.Current!.Resources["Primary"] : (Color)Application.Current!.Resources["Secondary"];
-                }           
+                }
             }
             return null;
         }
