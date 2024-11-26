@@ -72,5 +72,190 @@ namespace BLL.Tests.UnitTests
             Assert.Equal(1, result[1].HabitId);
             Assert.Equal(startDate.AddDays(5), result[1].RecordDate);
         }
+
+        [Fact]
+        public async Task GetLasHabitRecordsInRangeAsync_ReturnFiveRecords_WhenSevenExist()
+        {
+            // Arrange
+            var habitId = 1;
+            var count = 5;
+
+            var records = new List<HabitRecord>()
+            {
+                new HabitRecord
+                {
+                    Id = 1,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now)
+                },
+                new HabitRecord
+                {
+                    Id = 2,
+                    HabitId = 2,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(5)
+                },
+                new HabitRecord
+                {
+                    Id = 3,
+                    HabitId = 3,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(6)
+                },
+                new HabitRecord
+                {
+                    Id = 4,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(7)
+                },
+                new HabitRecord
+                {
+                    Id = 5,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(8)
+                },
+                new HabitRecord
+                {
+                    Id = 6,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(9)
+                },
+                new HabitRecord
+                {
+                    Id = 7,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(10)
+                },
+            };
+
+            _mockRepository.Setup(repo => repo.HabitRecord.GetAllAsync()).ReturnsAsync(records);
+
+            // Act
+            var result = (await _habitRecordService.GetLastHabitRecordsInRangeAsync(habitId, count)).ToList();
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(5, result.Count);
+        }
+
+        [Fact]
+        public async Task GetCurrentStreak_ReturnThreeStreak_WhenSevenExist()
+        {
+            // Arrange
+            var habitId = 1;
+            var records = new List<HabitRecord>()
+            {
+                new HabitRecord
+                {
+                    Id = 1,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now)
+                },
+                new HabitRecord
+                {
+                    Id = 2,
+                    HabitId = 2,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)
+                },
+                new HabitRecord
+                {
+                    Id = 3,
+                    HabitId = 3,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-6)
+                },
+                new HabitRecord
+                {
+                    Id = 4,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-1)
+                },
+                new HabitRecord
+                {
+                    Id = 5,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-8)
+                },
+                new HabitRecord
+                {
+                    Id = 6,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-2)
+                },
+                new HabitRecord
+                {
+                    Id = 7,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-10)
+                },
+            };
+
+            _mockRepository.Setup(repo => repo.HabitRecord.GetAllAsync()).ReturnsAsync(records);
+
+            // Aсе
+            var result = await _habitRecordService.GetCurrentStreak(habitId);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(3, result);
+        }
+
+        [Fact]
+        public async Task GetCurrentStreak_ReturnZeroStreak_WhenSevenExist()
+        {
+            // Arrange
+            var habitId = 4; // Не существует
+            var records = new List<HabitRecord>()
+            {
+                new HabitRecord
+                {
+                    Id = 1,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now)
+                },
+                new HabitRecord
+                {
+                    Id = 2,
+                    HabitId = 2,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-5)
+                },
+                new HabitRecord
+                {
+                    Id = 3,
+                    HabitId = 3,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-6)
+                },
+                new HabitRecord
+                {
+                    Id = 4,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-1)
+                },
+                new HabitRecord
+                {
+                    Id = 5,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-8)
+                },
+                new HabitRecord
+                {
+                    Id = 6,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-2)
+                },
+                new HabitRecord
+                {
+                    Id = 7,
+                    HabitId = 1,
+                    RecordDate = DateOnly.FromDateTime(DateTime.Now).AddDays(-10)
+                },
+            };
+
+            _mockRepository.Setup(repo => repo.HabitRecord.GetAllAsync()).ReturnsAsync(records);
+
+            // Aсе
+            var result = await _habitRecordService.GetCurrentStreak(habitId);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(0, result);
+        }
     }
 }
