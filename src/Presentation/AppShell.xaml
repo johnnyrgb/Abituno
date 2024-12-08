@@ -6,14 +6,18 @@
     xmlns:local="clr-namespace:Presentation.Views"
     Shell.FlyoutBehavior="Disabled"
     Title="Presentation">
+    <TabBar>
+        <ShellContent Title="Мои привычки"
+                      ContentTemplate="{DataTemplate local:HabitListPage}"
+                      Route="HabitListPage" />
 
-    <ShellContent Title="Мои привычки"
-                  ContentTemplate="{DataTemplate local:HabitListPage}"
-                  Route="HabitListPage"/>
+        <ShellContent Route="SettingPage"
+                      Title="Настройки"
+                      ContentTemplate="{DataTemplate local:SettingsPage}" />
+    </TabBar>
     <ShellContent Route="HabitDashboardPage"
                   Title="Дэшборд"
                   ContentTemplate="{DataTemplate local:HabitDashboardPage}" />
-    <ShellContent Route="SettingPage"
-                  Title="Настройки"
-                  ContentTemplate="{DataTemplate local:SettingsPage}" />
+    
+    
 </Shell>

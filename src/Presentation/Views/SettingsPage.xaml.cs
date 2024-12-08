@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Presentation.ViewModels;
 
-namespace Presentation.Views;
-
-public partial class SettingsPage : ContentPage
+namespace Presentation.Views
 {
-    public SettingsPage()
+    public partial class SettingsPage : ContentPage
     {
-        InitializeComponent();
+        public SettingsPage()
+        {
+            InitializeComponent();
+            BindingContext = new SettingsViewModel();
+        }
     }
 }

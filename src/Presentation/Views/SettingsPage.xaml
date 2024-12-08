@@ -1,9 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Presentation.ViewModels"
              x:Class="Presentation.Views.SettingsPage">
-    <ContentPage.Content>
-        
-    </ContentPage.Content>
+
+    <Shell.TitleView>
+        <Grid VerticalOptions="Center"
+              HorizontalOptions="FillAndExpand">
+            <Label Text="Настройки"
+                   FontSize="Title"
+                   VerticalOptions="Center"
+                   TextColor="{StaticResource Black}"
+                   HorizontalOptions="Start" />
+        </Grid>
+    </Shell.TitleView>
+
+    <StackLayout Padding="20">
+        <!-- Текст с размером базы данных -->
+        <Label Text="{Binding DatabaseSize}"
+               FontSize="Medium"
+               TextColor="{StaticResource Black}" />
+    </StackLayout>
 </ContentPage>

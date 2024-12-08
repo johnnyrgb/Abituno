@@ -2,20 +2,20 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:contentViews="clr-namespace:Presentation.Views.ContentViews"
-             x:Class="Presentation.Views.HabitListPage"
-             xmlns:mi="http://www.aathifmahir.com/dotnet/2022/maui/icons">
+             x:Class="Presentation.Views.HabitListPage">
     <Shell.TitleView>
-        <HorizontalStackLayout>
+        <Grid VerticalOptions="Center"
+              HorizontalOptions="FillAndExpand">
+            <!-- Текст слева -->
             <Label Text="Мои привычки"
                    FontSize="Title"
-                   HorizontalOptions="Start"
-                   VerticalOptions="Start"
-                   TextColor="{StaticResource Black}" />
-            <Button mi:MauiIcon.Value="{mi:Material Settings}"
-                    VerticalOptions="End"/>
-        </HorizontalStackLayout>
-        
-        </Shell.TitleView>
+                   VerticalOptions="Center"
+                   TextColor="{StaticResource Black}"
+                   HorizontalOptions="Start" />
+
+         
+        </Grid>
+    </Shell.TitleView>
 
     <Grid>
         <CollectionView ItemsSource="{Binding Habits}">
