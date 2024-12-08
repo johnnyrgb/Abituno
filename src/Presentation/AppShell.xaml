@@ -9,13 +9,11 @@
 
     <ShellContent Title="Мои привычки"
                   ContentTemplate="{DataTemplate local:HabitListPage}"
-                  Route="HabitListPage">
-        <ShellContent Route="HabitDashboardPage"
-                      Title="Дэшборд"
-                      ContentTemplate="{DataTemplate local:HabitDashboardPage}" />
-    </ShellContent>
-
-
-    
-
+                  Route="HabitListPage"/>
+    <ShellContent Route="HabitDashboardPage"
+                  Title="Дэшборд"
+                  ContentTemplate="{DataTemplate local:HabitDashboardPage}" />
+    <ShellContent Route="SettingPage"
+                  Title="Настройки"
+                  ContentTemplate="{DataTemplate local:SettingsPage}" />
 </Shell>

@@ -9,6 +9,7 @@ namespace Presentation
             InitializeComponent();
             Routing.RegisterRoute("dashboard", typeof(HabitDashboardPage));
             Routing.RegisterRoute("habitlist", typeof(HabitListPage));
+            Routing.RegisterRoute("settings", typeof(SettingsPage));
         }
     }
 }
